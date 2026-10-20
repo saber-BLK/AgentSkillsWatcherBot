@@ -1,0 +1,29 @@
+name: Telegram Bot Veille Skills IA
+
+on:
+  schedule:
+    # S'exécute automatiquement tous les jours à 09h00 UTC
+    - cron: '2 13 * * *'
+  workflow_dispatch: # Permet d'exécuter manuellement le bot si besoin
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v3
+
+      - name: Configurer Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Installer les dépendances
+        run: pip install -r requirements.txt
+
+      - name: Lancer le Bot
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: python main.py
