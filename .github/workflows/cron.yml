@@ -3,7 +3,7 @@ name: Telegram Bot Veille Skills IA
 on:
   schedule:
     # S'exécute automatiquement tous les jours à 09h00 UTC
-    - cron: '2 13 * * *'
+    - cron: '5 13 * * *'
   workflow_dispatch: # Permet d'exécuter manuellement le bot si besoin
 
 jobs:
